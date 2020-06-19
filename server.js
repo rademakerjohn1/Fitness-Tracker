@@ -27,5 +27,5 @@ require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 
 app.listen(port, () => {
-    console.log(`App running on port ${PORT}!`);
+    console.log(`App running on port ${port}!`);
   });
