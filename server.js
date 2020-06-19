@@ -1,9 +1,21 @@
 var express = require('express');
-var mongoose = require('mongoose');
 const logger = require("morgan");
 var app = express();
 
-var port = process.env.PORT || 8080;
+var PORT = process.env.PORT || 8080;
+
+var mongoose = require('mongoose');
+
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/workout";
+
+const options = {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+  family: 4 // Use IPv4, skip trying IPv6
+};
+
+mongoose.connect(MONGODB_URI,options)
 
 app.use(logger("dev"));
 
@@ -16,23 +28,12 @@ var html = require("./routes/html-routes.js");
 
 app.use('/api', api);
 app.use('', html);
-
-
 // require("./routes/html-routes.js")(app);
 // require("./routes/api-routes.js")(app);
 
-var MONGODB_URI = process.env.MONGODB_URL || "mongodb://localhost/workout";
-
-const options = {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-  family: 4 // Use IPv4, skip trying IPv6
-};
-
-mongoose.connect(MONGODB_URI,options)
 
 
-app.listen(port, () => {
-    console.log(`App running on port ${port}!`);
+
+app.listen(PORT, () => {
+    console.log(`App running on port ${PORT}!`);
   });
