@@ -2,6 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 const logger = require("morgan");
 var app = express();
+var db = require("./models");
 
 var port = process.env.PORT || 8080;
 
