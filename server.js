@@ -23,16 +23,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-var api = require("./routes/api-routes.js");
-var html = require("./routes/html-routes.js");
+var apiRoutes = require("./routes/api-routes.js");
+var htmlRoutes = require("./routes/html-routes.js");
 
-app.use('/api', api);
-app.use('', html);
-// require("./routes/html-routes.js")(app);
-// require("./routes/api-routes.js")(app);
-
-
-
+app.use('/api', apiRoutes);
+app.use(htmlRoutes);
 
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}!`);
